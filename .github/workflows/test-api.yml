@@ -1,39 +1,30 @@
-name: Test des APIs POWERCARD
+name: SoapUI Tests
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  test-api:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔄 Cloner le dépôt
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: ☕ Installer Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'temurin'
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y default-jre wget tar
 
-      - name: 📦 Télécharger SoapUI 5.8.0
-        run: |
-          wget https://downloads.sourceforge.net/project/soapui/soapui/5.8.0/SoapUI-5.8.0-linux-bin.tar.gz
+    - name: Run SoapUI tests
+      run: ./run-soapui.sh
 
-          tar -xzf SoapUI-5.8.0-linux-bin.tar.gz
-
-      - name: 🚀 Lancer les tests SoapUI
-        run: |
-          ./SoapUI-5.8.0/bin/testrunner.sh \
-            -j -r -f reports/ \
-            tests-api-powercard/soapui-project.xml
-
-      #- name: 📤 Uploader les rapports
-        #uses: actions/upload-artifact@v2
-        #with:
-         # name: rapports-tests-api
-          #path: reports/
+    - name: Upload Test Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: soapui-test-report
+        path: reports/
