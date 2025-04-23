@@ -32,7 +32,7 @@ jobs:
             tests-api-powercard/soapui-project.xml
 
       - name: 📤 Uploader les rapports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: rapports-tests-api
           path: reports/
