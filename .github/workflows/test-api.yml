@@ -22,7 +22,8 @@ jobs:
 
       - name: 📦 Télécharger SoapUI 5.8.0
         run: |
-          wget https://s3.amazonaws.com/downloads.eviware/soapuios/5.8.0/SoapUI-5.8.0-linux-bin.tar.gz
+          wget https://downloads.sourceforge.net/project/soapui/soapui/5.8.0/SoapUI-5.8.0-linux-bin.tar.gz
+
           tar -xzf SoapUI-5.8.0-linux-bin.tar.gz
 
       - name: 🚀 Lancer les tests SoapUI
