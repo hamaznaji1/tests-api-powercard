@@ -31,8 +31,8 @@ jobs:
             -j -r -f reports/ \
             tests-api-powercard/soapui-project.xml
 
-      - name: 📤 Uploader les rapports
-        uses: actions/upload-artifact@v2
-        with:
-          name: rapports-tests-api
-          path: reports/
+      #- name: 📤 Uploader les rapports
+        #uses: actions/upload-artifact@v2
+        #with:
+         # name: rapports-tests-api
+          #path: reports/
